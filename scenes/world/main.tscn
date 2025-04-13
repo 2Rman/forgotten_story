@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://imyragmpfscq"]
+
+[ext_resource type="PackedScene" uid="uid://dyb4wejoor3b7" path="res://scenes/world/level 1 castle.tscn" id="1_8govn"]
+[ext_resource type="PackedScene" uid="uid://cwreu6cxuvjfn" path="res://scenes/characters/player/player.tscn" id="2_nnprf"]
+
+[node name="world" type="Node2D"]
+
+[node name="backgound" parent="." instance=ExtResource("1_8govn")]
+
+[node name="Player" parent="." instance=ExtResource("2_nnprf")]
+position = Vector2(159, 417)
