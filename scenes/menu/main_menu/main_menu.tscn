@@ -1,0 +1,195 @@
+[gd_scene load_steps=15 format=3 uid="uid://cr5h2whevhcod"]
+
+[ext_resource type="Theme" uid="uid://bnqvgjvsjp7rk" path="res://styles/main.theme" id="1_r72xf"]
+[ext_resource type="Script" uid="uid://dgvxcujxhoce1" path="res://scenes/menu/main_menu/main_menu.gd" id="2_fvlue"]
+[ext_resource type="AudioStream" uid="uid://brarkvsu1r41x" path="res://assets/sounds/ForgottenStory_MAIN_MENU.mp3" id="3_3tda0"]
+[ext_resource type="Texture2D" uid="uid://bkgerup6noorm" path="res://assets/backgrounds/l1_bg_1-export.png" id="3_dk276"]
+[ext_resource type="Texture2D" uid="uid://cc3e8drhds1cu" path="res://assets/common/menu/menu.png" id="3_ww8d4"]
+[ext_resource type="AudioStream" uid="uid://dkc2d2soyipei" path="res://assets/sounds/common/click old.mp3" id="4_pqpva"]
+[ext_resource type="Texture2D" uid="uid://diwvvhhmw7l5i" path="res://assets/common/other/leaf.png" id="5_wd51l"]
+[ext_resource type="StyleBox" uid="uid://cu2lw8tc7e868" path="res://styles/button.tres" id="5_ww8d4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd51l"]
+atlas = ExtResource("3_ww8d4")
+region = Rect2(0, 0, 1344, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tda0"]
+atlas = ExtResource("3_ww8d4")
+region = Rect2(1344, 0, 1344, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqpva"]
+atlas = ExtResource("3_ww8d4")
+region = Rect2(2688, 0, 1344, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rek8k"]
+atlas = ExtResource("3_ww8d4")
+region = Rect2(4032, 0, 1344, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbr2h"]
+atlas = ExtResource("3_ww8d4")
+region = Rect2(5376, 0, 1344, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kuhe8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd51l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tda0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqpva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rek8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbr2h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r72xf")
+script = ExtResource("2_fvlue")
+
+[node name="MainTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3tda0")
+volume_db = -2.0
+
+[node name="Button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pqpva")
+volume_db = -2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="MarginContainer/CenterContainer"]
+
+[node name="CanvasLayer" type="CenterContainer" parent="MarginContainer/CenterContainer/ParallaxBackground"]
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/CenterContainer/ParallaxBackground/CanvasLayer"]
+modulate = Color(0.741385, 0.741385, 0.741385, 1)
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(1.42857, 1.40625)
+sprite_frames = SubResource("SpriteFrames_kuhe8")
+autoplay = "default"
+frame = 3
+frame_progress = 0.944246
+
+[node name="ParallaxClouds" type="ParallaxLayer" parent="MarginContainer/CenterContainer/ParallaxBackground"]
+motion_mirroring = Vector2(2100, 0)
+
+[node name="L1Bg1-export" type="Sprite2D" parent="MarginContainer/CenterContainer/ParallaxBackground/ParallaxClouds"]
+modulate = Color(1, 1, 1, 0.721569)
+position = Vector2(575.667, 324)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("3_dk276")
+
+[node name="L1Bg1-export2" type="Sprite2D" parent="MarginContainer/CenterContainer/ParallaxBackground/ParallaxClouds"]
+modulate = Color(1, 1, 1, 0.721569)
+position = Vector2(1656, 320)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_dk276")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="MarginContainer/CenterContainer"]
+position = Vector2(-150, 146)
+scale = Vector2(1.29275, 22.3959)
+amount = 6
+texture = ExtResource("5_wd51l")
+lifetime = 3.0
+emission_shape = 1
+emission_sphere_radius = 23.23
+gravity = Vector2(980, 100)
+angular_velocity_min = 45.47
+angular_velocity_max = 318.31
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Main_title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_r72xf")
+theme_override_font_sizes/font_size = 120
+text = "Forgotten Story"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainerStart" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="ButtonStart" type="Button" parent="MarginContainer/VBoxContainer/CenterContainerStart"]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(0.617455, 0.617455, 0.617455, 1)
+theme_override_colors/font_pressed_color = Color(0.237539, 0.237539, 0.237539, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = ExtResource("5_ww8d4")
+theme_override_styles/hover = ExtResource("5_ww8d4")
+theme_override_styles/pressed = ExtResource("5_ww8d4")
+theme_override_styles/normal = ExtResource("5_ww8d4")
+text = "Start"
+
+[node name="CenterContainerExit" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="ButtonExit" type="Button" parent="MarginContainer/VBoxContainer/CenterContainerExit"]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_colors/font_pressed_color = Color(0.239216, 0.239216, 0.239216, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = ExtResource("5_ww8d4")
+theme_override_styles/hover = ExtResource("5_ww8d4")
+theme_override_styles/pressed = ExtResource("5_ww8d4")
+theme_override_styles/normal = ExtResource("5_ww8d4")
+text = "Exit
+"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pre-alpha ver 0.0.1"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainerStart/ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainerExit/ButtonExit" to="." method="_on_button_exit_pressed"]

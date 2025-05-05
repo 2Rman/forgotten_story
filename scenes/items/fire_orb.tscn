@@ -1,9 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://bqlthxiqtg8pj"]
+[gd_scene load_steps=39 format=3 uid="uid://bqlthxiqtg8pj"]
 
 [ext_resource type="Texture2D" uid="uid://57kqml1mowmb" path="res://assets/items/Orbs/Fire Orb.png" id="1_1exsp"]
-[ext_resource type="Script" path="res://scenes/items/fire_orb.gd" id="1_ys5p6"]
+[ext_resource type="Script" uid="uid://ckim7uwlbhnqs" path="res://scenes/items/fire_orb.gd" id="1_ys5p6"]
 [ext_resource type="Texture2D" uid="uid://b0n4uma1ncgiu" path="res://assets/items/Orbs/03.png" id="2_grxi0"]
 [ext_resource type="Texture2D" uid="uid://chpgywu6y83lv" path="res://assets/items/Orbs/circle.png" id="4_g17h8"]
+[ext_resource type="AudioStream" uid="uid://ghq0nnspeong" path="res://assets/sounds/orbs/fire_orb.mp3" id="5_r4ejk"]
+[ext_resource type="AudioStream" uid="uid://dlkn5suog0gde" path="res://assets/sounds/orbs/fire_orb_idle.mp3" id="6_6f773"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fyjn"]
 atlas = ExtResource("2_grxi0")
@@ -225,7 +227,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 14.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7mpt"]
@@ -253,5 +255,17 @@ color = Color(0.68479, 0.219179, 0.222317, 1)
 energy = 2.0
 shadow_enabled = true
 texture = ExtResource("4_g17h8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r4ejk")
+volume_db = -6.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_6f773")
+volume_db = -3.0
+autoplay = true
+max_distance = 120.0
+panning_strength = 5.0
+bus = &"ReverbBus"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

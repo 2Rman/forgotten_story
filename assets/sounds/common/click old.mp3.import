@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkc2d2soyipei"
+path="res://.godot/imported/click old.mp3-d1cc51c165fd5e6e76729674e7c2b20c.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/common/click old.mp3"
+dest_files=["res://.godot/imported/click old.mp3-d1cc51c165fd5e6e76729674e7c2b20c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://imyragmpfscq"]
+
+[ext_resource type="PackedScene" uid="uid://dyb4wejoor3b7" path="res://scenes/world/level 1 castle.tscn" id="1_q7ygm"]
+[ext_resource type="PackedScene" uid="uid://cwreu6cxuvjfn" path="res://scenes/characters/player/player.tscn" id="2_51his"]
+[ext_resource type="PackedScene" uid="uid://7qg06aoyux0b" path="res://scenes/characters/enemy_ontogonist/enemy_ontogonist.tscn" id="3_nsrf1"]
+[ext_resource type="AudioStream" uid="uid://tr54a31jljnh" path="res://assets/sounds/CASTLE_main_theme.mp3" id="4_odp70"]
+[ext_resource type="PackedScene" uid="uid://d26bbfwsqw03y" path="res://scenes/characters/enemy_ontogonist_red/enemy_ontogonist_red.tscn" id="5_51his"]
+
+[sub_resource type="GDScript" id="GDScript_51his"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	text = \"Orbs collected: \" + str(Globals.orbs_collected)
+"
+
+[node name="world_1" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_odp70")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
+
+[node name="backgound" parent="." instance=ExtResource("1_q7ygm")]
+
+[node name="Player" parent="." instance=ExtResource("2_51his")]
+position = Vector2(57, 387)
+
+[node name="Enemy_ontogonist" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(1735, 492)
+
+[node name="Enemy_ontogonist2" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(1891, 470)
+
+[node name="Enemy_ontogonist3" parent="." instance=ExtResource("5_51his")]
+position = Vector2(1696, 495)
+
+[node name="Enemy_ontogonist_red" parent="." instance=ExtResource("5_51his")]
+position = Vector2(2658, 553)
+
+[node name="Enemy_ontogonist_red2" parent="." instance=ExtResource("5_51his")]
+position = Vector2(3167, 364)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Orbs" type="Label" parent="CanvasLayer"]
+offset_left = 30.0
+offset_top = 937.0
+offset_right = 310.0
+offset_bottom = 1017.0
+theme_override_font_sizes/font_size = 50
+script = SubResource("GDScript_51his")
+
+[node name="Enemy_ontogonist4" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(718, 507)
