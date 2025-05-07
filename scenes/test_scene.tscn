@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cryvkg1qpg1hc"]
+
+[ext_resource type="PackedScene" uid="uid://cwreu6cxuvjfn" path="res://scenes/characters/player/player.tscn" id="1_j8ivh"]
+[ext_resource type="PackedScene" uid="uid://d26bbfwsqw03y" path="res://scenes/characters/enemy_ontogonist_red/enemy_ontogonist_red.tscn" id="2_nd71p"]
+
+[node name="test_scene" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(747, -21)
+polygon = PackedVector2Array(-685, -448, -687, 37, 902, 37, 902, -503, 946, -505, 943, 74, -724, 72, -722, -454)
+
+[node name="Player" parent="." instance=ExtResource("1_j8ivh")]
+position = Vector2(226, -52)
+
+[node name="Enemy_ontogonist_red" parent="." instance=ExtResource("2_nd71p")]
+position = Vector2(463, -41)

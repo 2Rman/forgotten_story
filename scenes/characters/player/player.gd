@@ -22,7 +22,6 @@ func _ready() -> void:
 	dead_menu()
 
 func _physics_process(delta: float) -> void:
-	
 	if is_dead:
 		audio_main_theme.stop()
 		animation_player.play("death")

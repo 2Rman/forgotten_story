@@ -7,13 +7,15 @@ extends Enemy
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var audio_stream_player: AudioStreamPlayer = $Audio/AudioStreamPlayer
+@onready var player_controller: RayCast2D = $PlayerController
 
-const SPEED = 25.0
+var SPEED = 25.0
 
 var death_sound = preload("res://assets/sounds/enemy_death/puf.mp3")
 var rand: RandomNumberGenerator
 var direction = 0
 var is_dead:= false
+var chase_direction
 
 func _ready() -> void:
 	rand = RandomNumberGenerator.new()
@@ -28,10 +30,23 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
+	if player_controller.is_colliding():
+		if player_controller.get_collider() is Player:
+			timer.set_paused(true)
+			direction = -sign(global_position.x - player_controller.get_collision_point().x)
+			SPEED = 70
+			velocity.x = SPEED * direction
+			
+		else:
+			timer.set_paused(false)
+			SPEED = 25
+	
 	if direction == -1:
 		animation.flip_h = true
+		player_controller.target_position.x = -100
 	elif direction == 1:
 		animation.flip_h = false
+		player_controller.target_position.x = 100
 		
 	if direction:
 		velocity.x = direction * SPEED
