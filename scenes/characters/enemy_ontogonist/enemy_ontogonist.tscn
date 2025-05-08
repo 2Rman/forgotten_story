@@ -349,7 +349,7 @@ collision_layer = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KillboxArea"]
 position = Vector2(-0.0486109, -1.90735e-06)
 scale = Vector2(0.902778, 1)
-polygon = PackedVector2Array(2.26923, -9, 4.48461, -8, -5.48461, -8, -3.26923, -9)
+polygon = PackedVector2Array(2.26923, -9, 5.59231, -8, -6.59231, -8, -3.26923, -9)
 
 [node name="Audio" type="Node" parent="."]
 
@@ -357,6 +357,13 @@ polygon = PackedVector2Array(2.26923, -9, 4.48461, -8, -5.48461, -8, -3.26923, -
 stream = ExtResource("5_s7i0l")
 volume_db = -1.0
 bus = &"ReverbBus"
+
+[node name="ObstacleController" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+
+[node name="FloorCollider" type="RayCast2D" parent="."]
+position = Vector2(10, 0)
+target_position = Vector2(0, 75)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="KillboxArea" to="." method="_on_killbox_area_body_entered"]

@@ -186,9 +186,9 @@ theme_override_styles/normal = ExtResource("5_ww8d4")
 text = "Exit
 "
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Version" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Pre-alpha ver 0.0.1"
+text = "Pre-alpha ver 0.0.2"
 horizontal_alignment = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainerStart/ButtonStart" to="." method="_on_button_start_pressed"]

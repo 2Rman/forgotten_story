@@ -1,9 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://cwreu6cxuvjfn"]
+[gd_scene load_steps=52 format=3 uid="uid://cwreu6cxuvjfn"]
 
 [ext_resource type="Script" uid="uid://o1g2aae64xn6" path="res://scenes/characters/player/player.gd" id="1_241ue"]
 [ext_resource type="Texture2D" uid="uid://dswwmgmu0iulh" path="res://assets/characters/player/AnimationSheet_Character.png" id="1_jkki0"]
-[ext_resource type="PackedScene" uid="uid://ksg1jaxe412e" path="res://scenes/menu/pause_menu/pause_menu.tscn" id="3_686vu"]
-[ext_resource type="PackedScene" uid="uid://c74fi0l8jowpd" path="res://scenes/menu/death_menu/death_menu.tscn" id="4_hss88"]
 [ext_resource type="AudioStream" uid="uid://43efns5unyxp" path="res://assets/sounds/steps/step1.mp3" id="5_djydg"]
 [ext_resource type="AudioStream" uid="uid://cj2j4u6xfxyfj" path="res://assets/sounds/steps/step2.mp3" id="6_bsn6e"]
 [ext_resource type="AudioStream" uid="uid://cn2vu0l62rv2k" path="res://assets/sounds/steps/step3.mp3" id="7_blysn"]
@@ -532,6 +530,7 @@ limit_bottom = 650
 position_smoothing_enabled = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Camera2D"]
+visible = false
 light_mask = 2
 visibility_layer = 2
 anchors_preset = 15
@@ -542,14 +541,6 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.3, 0.3)
-
-[node name="PauseMenu" parent="Camera2D/CenterContainer" instance=ExtResource("3_686vu")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="DeathMenu" parent="Camera2D/CenterContainer" instance=ExtResource("4_hss88")]
-layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

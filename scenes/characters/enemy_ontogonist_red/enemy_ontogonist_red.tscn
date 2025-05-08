@@ -309,7 +309,16 @@ collision_layer = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KillboxArea"]
 position = Vector2(-0.0486109, -1.90735e-06)
 scale = Vector2(0.902778, 1)
-polygon = PackedVector2Array(2.26923, -9, 4.48461, -8, -5.48461, -8, -3.26923, -9)
+polygon = PackedVector2Array(2.26923, -9, 5.59231, -8, -6.59231, -8, -3.26923, -9)
+
+[node name="FloorCollider" type="RayCast2D" parent="."]
+modulate = Color(0.36275, 0.376012, 0.848352, 1)
+position = Vector2(10, 0)
+target_position = Vector2(0, 40)
+
+[node name="ObstacleController" type="RayCast2D" parent="."]
+modulate = Color(0.306631, 0.433322, 0.208844, 1)
+target_position = Vector2(10, 0)
 
 [node name="PlayerController" type="RayCast2D" parent="."]
 target_position = Vector2(100, 0)

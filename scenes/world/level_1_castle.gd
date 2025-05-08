@@ -20,3 +20,8 @@ func _on_reverb_area_body_entered(body: Node2D) -> void:
 func _on_reverb_area_body_exited(body: Node2D) -> void:
 	if body is Player or body is Enemy:
 		body._on_reverb_zone_exited()
+
+
+func _on_area_dead_body_entered(body: Node2D) -> void:
+	if body is Player:
+		Globals.is_dead = true

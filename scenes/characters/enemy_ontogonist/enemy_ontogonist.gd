@@ -7,6 +7,8 @@ extends Enemy
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var audio_stream_player: AudioStreamPlayer = $Audio/AudioStreamPlayer
+@onready var obstacle_controller: RayCast2D = $ObstacleController
+@onready var floor_collider: RayCast2D = $FloorCollider
 
 const SPEED = 50.0
 
@@ -30,8 +32,12 @@ func _physics_process(delta: float) -> void:
 	
 	if direction == -1:
 		animation.flip_h = true
+		obstacle_controller.target_position.x = -10
+		floor_collider.position.x = -10
 	elif direction == 1:
 		animation.flip_h = false
+		obstacle_controller.target_position.x = 10
+		floor_collider.position.x = 10
 		
 	if direction:
 		velocity.x = direction * SPEED
@@ -40,7 +46,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		animation_player.play("Idle")
-		
+	
+	if obstacle_controller.is_colliding() and obstacle_controller.get_collider() is TileMapLayer:
+		velocity = Vector2(50, -170)
+	
+	if !floor_collider.is_colliding():
+		direction = -direction
+	
 	move_and_slide()
 
 func _on_timer_timeout() -> void:

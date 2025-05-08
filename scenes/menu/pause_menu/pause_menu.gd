@@ -1,6 +1,6 @@
 extends Control
 
-@onready var menu = $"../../../"
+@onready var menu = $"../.."
 @onready var button: AudioStreamPlayer = $Button
 
 func _on_resume_pressed() -> void:

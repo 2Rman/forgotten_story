@@ -2,32 +2,28 @@ class_name Player extends CharacterBody2D
 
 
 const SPEED = 80.0
-const JUMP_VELOCITY = -240.0
+const JUMP_VELOCITY = -250.0
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
-@onready var pause_menu_node: Control = $Camera2D/CenterContainer/PauseMenu
-@onready var death_menu_node: Control = $Camera2D/CenterContainer/DeathMenu
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var steps: AudioStreamPlayer = $Sounds/Steps
 @onready var audio_main_theme: AudioStreamPlayer = $"../AudioStreamPlayer"
 @onready var death: AudioStreamPlayer = $Sounds/Death
+@onready var world_1: Node2D = $".."
 
-var is_dead: bool = false
 var is_paused: bool = false
 
 func _ready() -> void:
 	AudioServer.set_bus_bypass_effects(1, true)
-	pause_menu()
-	dead_menu()
 
 func _physics_process(delta: float) -> void:
-	if is_dead:
+	if Globals.is_dead:
 		audio_main_theme.stop()
 		animation_player.play("death")
 		death_camera()
 		await animation_player.animation_finished
-		dead_menu()
+		world_1.dead_menu()
 		#queue_free()
 	
 	if not is_on_floor():
@@ -49,14 +45,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 		if velocity.y == 0:
 			animation_player.play("move")
-			
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if velocity.y == 0:
 			animation_player.play("idle")
-	
-	if Input.is_action_just_pressed("esc"):
-		pause_menu()
 
 	move_and_slide()
 	
@@ -71,28 +63,12 @@ func _hit_enemy() -> void:
 
 func _on_killbox_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		is_dead = true
+		Globals.is_dead = true
 		
 func death_camera():
 	if camera_2d.zoom > Vector2(4.5, 4.5):
 		camera_2d.zoom -= Vector2(0.01, 0.01)
 
-func pause_menu():
-	if is_paused:
-		pause_menu_node.show()
-		Engine.time_scale = 0
-	else:
-		pause_menu_node.hide()
-		Engine.time_scale = 1
-	is_paused = !is_paused
-	
-func dead_menu():
-	if is_dead:
-		death_menu_node.show()
-		Engine.time_scale = 0
-	else:
-		death_menu_node.hide()
-		Engine.time_scale = 1
 
 #ВКЛючение эффекта ревера
 func _on_reverb_zone_entered():
