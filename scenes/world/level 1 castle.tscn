@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://dyb4wejoor3b7"]
+[gd_scene load_steps=82 format=4 uid="uid://dyb4wejoor3b7"]
 
 [ext_resource type="Script" uid="uid://c50hi00wfsyga" path="res://scenes/world/level_1_castle.gd" id="1_3l3ol"]
 [ext_resource type="Texture2D" uid="uid://cx0vor2nqrqg0" path="res://assets/tileset_world/castle/caslte_atlas.png" id="1_ge67p"]
@@ -10,7 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://ctqmm3lou5r43" path="res://assets/tileset_world/castle/DarkCastle_dark-export.png" id="6_r6pf2"]
 [ext_resource type="Texture2D" uid="uid://b5op1dd1234qp" path="res://assets/tileset_world/castle/DarkCastle_destroyed-dark_export-export.png" id="7_mq17d"]
 [ext_resource type="Texture2D" uid="uid://bbjm5wwfprlte" path="res://assets/tileset_world/castle/DarkCastle_destroyed-corners.png" id="8_y8ivq"]
-[ext_resource type="PackedScene" uid="uid://bqlthxiqtg8pj" path="res://scenes/items/fire_orb.tscn" id="10_5mvvc"]
+[ext_resource type="PackedScene" uid="uid://bqlthxiqtg8pj" path="res://scenes/items/fire_orb/fire_orb.tscn" id="10_5mvvc"]
+[ext_resource type="PackedScene" uid="uid://dloaqlne5wf1d" path="res://scenes/items/death_orb/death_orb.tscn" id="12_rkkd1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6trnp"]
 texture = ExtResource("3_6gaj8")
@@ -760,9 +761,6 @@ tile_set = SubResource("TileSet_rj1o7")
 [node name="FireOrb" parent="." instance=ExtResource("10_5mvvc")]
 position = Vector2(1464, 94)
 
-[node name="FireOrb2" parent="." instance=ExtResource("10_5mvvc")]
-position = Vector2(3288, 254)
-
 [node name="Light" type="DirectionalLight2D" parent="."]
 energy = 0.2
 blend_mode = 1
@@ -787,6 +785,9 @@ polygon = PackedVector2Array(1776, 424, 1856, 424, 1856, 536, 1776, 536)
 [node name="DeadCollision" type="CollisionShape2D" parent="AreaDead"]
 position = Vector2(2203, 661)
 shape = SubResource("RectangleShape2D_p1v6l")
+
+[node name="FireOrb2" parent="." instance=ExtResource("12_rkkd1")]
+position = Vector2(3288, 256)
 
 [connection signal="body_entered" from="AudioZones/ReverbArea" to="." method="_on_reverb_area_body_entered"]
 [connection signal="body_exited" from="AudioZones/ReverbArea" to="." method="_on_reverb_area_body_exited"]
