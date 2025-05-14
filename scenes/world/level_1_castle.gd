@@ -25,3 +25,11 @@ func _on_reverb_area_body_exited(body: Node2D) -> void:
 func _on_area_dead_body_entered(body: Node2D) -> void:
 	if body is Player:
 		Globals.is_dead = true
+		
+#func _on_orb_collected(obj: Orb) -> void:
+	#match Orb:
+		#FireOrb: Globals.fire_orbs += 1
+		#NatureOrb: Globals.nature_orbs += 1
+		#DeathOrb: Globals.death_orbs += 1
+		#HolyOrb: Globals.holy_orbs += 1
+		

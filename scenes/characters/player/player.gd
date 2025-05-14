@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+signal orb_collected()
 
 const SPEED = 80.0
 const JUMP_VELOCITY = -250.0
@@ -84,3 +85,15 @@ func _on_reverb_zone_exited():
 	tween.tween_property(effect, "wet", 0.0, 0.2)
 	await tween.finished
 	AudioServer.set_bus_bypass_effects(1, true)
+	
+func on_orb_collected(object: Orb):
+	if object is FireOrb: 
+		Globals.fire_orbs += 1
+	elif object is NatureOrb:
+		Globals.nature_orbs += 1
+	elif object is DeathOrb:
+		Globals.death_orbs += 1
+	elif object is HolyOrb:
+		Globals.holy_orbs += 1
+	orb_collected.emit()
+	pass

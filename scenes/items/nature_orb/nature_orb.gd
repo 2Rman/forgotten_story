@@ -1,13 +1,11 @@
 extends Orb
-class_name DeathOrb
+class_name NatureOrb
 
 func _process(delta: float) -> void:
 	pass
 
 #func _on_body_entered(body: Node2D) -> void:
 	#if body.name == "Player":
-		#change_stat()
-		#
 		#collision_shape_2d.queue_free()
 		#
 		#audio_stream_player_2d.stop()
@@ -15,11 +13,11 @@ func _process(delta: float) -> void:
 		#
 		#animated_sprite_2d.play("Collect")
 		#animated_sprite_2d.offset = Vector2(2, 20)
-		#
+	#
 		#await animated_sprite_2d.animation_finished
 		#await audio_stream_player.finished
-		#
 		#queue_free()
-#
+
 #func change_stat():
-	#Globals.death_orbs += 1
+	#emit_signal("orb_collected", self)
+	#Globals.nature_orbs += 1

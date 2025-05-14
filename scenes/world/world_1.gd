@@ -2,12 +2,14 @@ extends Node2D
 
 @onready var pause_menu_node: Control = $CanvasLayer/PauseMenu
 @onready var death_menu_node: Control = $CanvasLayer/death_menu
+@onready var ui: Control = $CanvasLayer/UI
 
 var is_paused := false
 
 func _ready() -> void:
 	pause_menu()
 	dead_menu()
+	
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
