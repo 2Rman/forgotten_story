@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cwreu6cxuvjfn"]
+[gd_scene load_steps=53 format=3 uid="uid://cwreu6cxuvjfn"]
 
 [ext_resource type="Script" uid="uid://o1g2aae64xn6" path="res://scenes/characters/player/player.gd" id="1_241ue"]
 [ext_resource type="Texture2D" uid="uid://dswwmgmu0iulh" path="res://assets/characters/player/AnimationSheet_Character.png" id="1_jkki0"]
@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://c34qcv2j6itdl" path="res://assets/sounds/steps/step6.mp3" id="10_i1nod"]
 [ext_resource type="AudioStream" uid="uid://wn4k5eqjxhes" path="res://assets/sounds/steps/step7.mp3" id="11_4kqyw"]
 [ext_resource type="AudioStream" uid="uid://bnmqn2ar6sb43" path="res://assets/sounds/character/death.mp3" id="12_bsn6e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xnwo"]
+radius = 170.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t61fv"]
 size = Vector2(20, 10)
@@ -492,6 +495,14 @@ stream_6/stream = ExtResource("11_4kqyw")
 position = Vector2(0, 1)
 collision_mask = 3
 script = ExtResource("1_241ue")
+
+[node name="OrbControlArea" type="Area2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.5, 0.5)
+collision_mask = 2
+
+[node name="OrbControlCollision" type="CollisionShape2D" parent="OrbControlArea"]
+shape = SubResource("CircleShape2D_3xnwo")
 
 [node name="KillboxArea" type="Area2D" parent="."]
 position = Vector2(0, 3)

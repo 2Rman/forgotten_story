@@ -6,7 +6,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		#change_stat()
+		body.on_orb_collected(self)
 		
 		collision_shape_2d.queue_free()
 		
@@ -18,6 +18,3 @@ func _on_body_entered(body: Node2D) -> void:
 		await animated_sprite_2d.animation_finished
 		
 		queue_free()
-
-#func change_stat():
-	#Globals.holy_orbs += 1

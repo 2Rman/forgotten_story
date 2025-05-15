@@ -25,9 +25,10 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if is_dead == true:
+		predead_actions()
 		animation_player.play("Death")
 		await  animation_player.animation_finished
-		queue_free()
+		dead_actions()
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -70,6 +71,16 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
+
+func predead_actions():
+	killbox_area.set_deferred("monitoring", false)
+	collision_shape.set_deferred("disabled", true)
+	
+func dead_actions():
+	cpu_particles_2d.queue_free()
+	killbox_area.queue_free()
+	collision_shape.queue_free()
+	queue_free()
 
 func _on_timer_timeout() -> void:
 	timer.wait_time = randf_range(0.5, 1)

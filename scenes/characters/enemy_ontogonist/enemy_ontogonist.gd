@@ -23,9 +23,10 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if is_dead == true:
+		predead_actions()
 		animation_player.play("Death")
 		await  animation_player.animation_finished
-		queue_free()
+		dead_actions()
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -55,6 +56,16 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func predead_actions():
+	killbox_area.set_deferred("monitoring", false)
+	collision_shape.set_deferred("disabled", true)
+	
+func dead_actions():
+	cpu_particles_2d.queue_free()
+	killbox_area.queue_free()
+	collision_shape.queue_free()
+	queue_free()
+
 func _on_timer_timeout() -> void:
 	timer.wait_time = randf_range(0.5, 1)
 	direction = rand.randi_range(-1, 1)
@@ -62,17 +73,13 @@ func _on_timer_timeout() -> void:
 func _on_killbox_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		is_dead = true
-		cpu_particles_2d.queue_free()
-		killbox_area.queue_free()
-		collision_shape.queue_free()
+
 		body._hit_enemy()
 
 func _on_reverb_zone_entered():
 	pass
-	#audio_stream_player.set_bus(AudioServer.get_bus_name(1))
-	
 	
 func _on_reverb_zone_exited():
 	pass
-	#audio_stream_player.set_bus(AudioServer.get_bus_name(0))
+	
 	
