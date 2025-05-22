@@ -599,8 +599,8 @@ texture = ExtResource("1_ge67p")
 
 [sub_resource type="TileSet" id="TileSet_3ym14"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 7
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_67r14")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"

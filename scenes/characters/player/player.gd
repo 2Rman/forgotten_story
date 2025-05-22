@@ -65,10 +65,16 @@ func _physics_process(delta: float) -> void:
 func orb_using():
 	match Globals.selected_orb:
 		Globals.ORBS.FIRE:
-			var fireball = fireball_scene_resource.instantiate()
-			world_1.add_child(fireball)
-			fireball.global_position = global_position
-			fireball.direction = Vector2(1, 0) if animation.flip_h == false else Vector2(-1, 0)
+			if Globals.fire_orbs > 0:
+				var fireball = fireball_scene_resource.instantiate()
+				world_1.add_child(fireball)
+				fireball.global_position = global_position
+				fireball.direction = Vector2(1, 0) if animation.flip_h == false else Vector2(-1, 0)
+				velocity.x = 0
+				set_physics_process(false)
+				animation_player.play("cast_fire")
+				await animation_player.animation_finished
+				set_physics_process(true)
 		Globals.ORBS.NATURE:
 			if Globals.nature_orbs > 0:
 				velocity.x = 0

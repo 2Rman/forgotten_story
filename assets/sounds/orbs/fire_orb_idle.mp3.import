@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/fire_orb_idle.mp3-d18fa3498d00e23feb7160ef4e1
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.5
+bpm=0.0
 beat_count=0
 bar_beats=4

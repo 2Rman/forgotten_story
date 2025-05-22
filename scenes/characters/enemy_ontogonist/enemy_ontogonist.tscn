@@ -402,6 +402,7 @@ polygon = PackedVector2Array(-4, 11, -4, 13, 3, 13, 3, 11)
 
 [node name="Enemy_ontogonist" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_ho35q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -456,10 +457,12 @@ bus = &"ReverbBus"
 
 [node name="ObstacleController" type="RayCast2D" parent="."]
 target_position = Vector2(10, 0)
+collision_mask = 4
 
 [node name="FloorCollider" type="RayCast2D" parent="."]
 position = Vector2(10, 0)
 target_position = Vector2(0, 75)
+collision_mask = 4
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="KillboxArea" to="." method="_on_killbox_area_body_entered"]

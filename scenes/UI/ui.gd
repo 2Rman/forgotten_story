@@ -58,7 +58,8 @@ func _on_player_orb_collected() -> void:
 
 func fire_orb_using():
 	print("fire")
-	pass
+	Globals.fire_orbs -= 1
+	_on_player_orb_collected()
 
 func nature_orb_using():
 	print("nature")

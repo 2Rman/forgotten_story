@@ -362,6 +362,7 @@ polygon = PackedVector2Array(-4, 11, -4, 13, 3, 13, 3, 11)
 
 [node name="Enemy_ontogonist_red" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_fstj3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -411,10 +412,12 @@ polygon = PackedVector2Array(4.48461, -9, 4.48461, -8, -5.48461, -8, -5.48461, -
 modulate = Color(0.36275, 0.376012, 0.848352, 1)
 position = Vector2(10, 0)
 target_position = Vector2(0, 60)
+collision_mask = 4
 
 [node name="ObstacleController" type="RayCast2D" parent="."]
 modulate = Color(0.306631, 0.433322, 0.208844, 1)
 target_position = Vector2(10, 0)
+collision_mask = 4
 
 [node name="PlayerController" type="RayCast2D" parent="."]
 target_position = Vector2(100, 0)

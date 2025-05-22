@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://cwreu6cxuvjfn"]
+[gd_scene load_steps=116 format=3 uid="uid://cwreu6cxuvjfn"]
 
 [ext_resource type="Script" uid="uid://o1g2aae64xn6" path="res://scenes/characters/player/player.gd" id="1_241ue"]
 [ext_resource type="Texture2D" uid="uid://dswwmgmu0iulh" path="res://assets/characters/player/AnimationSheet_Character.png" id="1_jkki0"]
@@ -128,6 +128,22 @@ region = Rect2(128, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ieypo"]
 atlas = ExtResource("2_djydg")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl5g2"]
+atlas = ExtResource("1_jkki0")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiuwk"]
+atlas = ExtResource("1_jkki0")
+region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5mos"]
+atlas = ExtResource("1_jkki0")
+region = Rect2(128, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afvx7"]
+atlas = ExtResource("1_jkki0")
+region = Rect2(160, 256, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sulyr"]
 atlas = ExtResource("3_blysn")
@@ -430,9 +446,26 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ieypo")
 }],
-"loop": true,
+"loop": false,
 "name": &"cast_death",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl5g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiuwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5mos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afvx7")
+}],
+"loop": false,
+"name": &"cast_fire",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -513,7 +546,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_chajt")
 }],
-"loop": true,
+"loop": false,
 "name": &"cast_nature",
 "speed": 20.0
 }, {
@@ -700,6 +733,33 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c1dak"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["cast_fire"]
 }
 
 [sub_resource type="Animation" id="Animation_blysn"]
@@ -919,6 +979,7 @@ tracks/2/keys = {
 _data = {
 &"RESET": SubResource("Animation_3hnlq"),
 &"cast_death": SubResource("Animation_sulyr"),
+&"cast_fire": SubResource("Animation_c1dak"),
 &"cast_nature": SubResource("Animation_blysn"),
 &"death": SubResource("Animation_svuau"),
 &"fall": SubResource("Animation_ro20i"),
@@ -939,7 +1000,7 @@ stream_6/stream = ExtResource("11_4kqyw")
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, 1)
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_241ue")
 
 [node name="OrbControlArea" type="Area2D" parent="."]
