@@ -759,6 +759,13 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
+[node name="Label_alarm" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Not enough current orbs"
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1

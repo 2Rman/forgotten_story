@@ -20,32 +20,6 @@ func _process(delta: float) -> void:
 [node name="world_1" type="Node2D"]
 script = ExtResource("1_odp70")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_odp70")
-volume_db = -5.0
-autoplay = true
-parameters/looping = true
-
-[node name="backgound" parent="." instance=ExtResource("1_q7ygm")]
-
-[node name="Player" parent="." instance=ExtResource("2_51his")]
-position = Vector2(1592, 445)
-
-[node name="Enemy_ontogonist" parent="." instance=ExtResource("3_nsrf1")]
-position = Vector2(1735, 492)
-
-[node name="Enemy_ontogonist2" parent="." instance=ExtResource("3_nsrf1")]
-position = Vector2(1829, 470)
-
-[node name="Enemy_ontogonist3" parent="." instance=ExtResource("5_51his")]
-position = Vector2(2023, 462)
-
-[node name="Enemy_ontogonist_red" parent="." instance=ExtResource("5_51his")]
-position = Vector2(2883, 540)
-
-[node name="Enemy_ontogonist_red2" parent="." instance=ExtResource("5_51his")]
-position = Vector2(3167, 364)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
 
@@ -59,6 +33,7 @@ theme_override_font_sizes/font_size = 50
 script = SubResource("GDScript_51his")
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("9_bkhey")]
+metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_nsrf1")]
 visible = false
@@ -66,7 +41,36 @@ visible = false
 [node name="death_menu" parent="CanvasLayer" instance=ExtResource("8_3cjiv")]
 visible = false
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_odp70")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
+
+[node name="backgound" parent="." instance=ExtResource("1_q7ygm")]
+
+[node name="Player" parent="." instance=ExtResource("2_51his")]
+position = Vector2(1673, 475)
+
+[node name="Enemy_ontogonist" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(1587, 467)
+
+[node name="Enemy_ontogonist2" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(1829, 470)
+
+[node name="Enemy_ontogonist3" parent="." instance=ExtResource("5_51his")]
+position = Vector2(2023, 462)
+
+[node name="Enemy_ontogonist_red" parent="." instance=ExtResource("5_51his")]
+position = Vector2(2883, 540)
+
+[node name="Enemy_ontogonist_red2" parent="." instance=ExtResource("5_51his")]
+position = Vector2(3167, 364)
+
 [node name="Enemy_ontogonist4" parent="." instance=ExtResource("3_nsrf1")]
 position = Vector2(718, 507)
+
+[node name="Enemy_ontogonist5" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(2753, 545)
 
 [connection signal="orb_collected" from="Player" to="CanvasLayer/UI" method="_on_player_orb_collected"]

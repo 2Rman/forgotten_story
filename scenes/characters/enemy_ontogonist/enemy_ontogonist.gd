@@ -3,7 +3,7 @@ extends Enemy
 @onready var timer: Timer = $Timer
 @onready var killbox_area: Area2D = $KillboxArea
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+#@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var audio_stream_player: AudioStreamPlayer = $Audio/AudioStreamPlayer
@@ -22,6 +22,8 @@ func _ready() -> void:
 	audio_stream_player.stream = death_sound
 	
 func _physics_process(delta: float) -> void:
+
+	
 	if is_dead == true:
 		predead_actions()
 		animation_player.play("Death")
@@ -31,29 +33,34 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
+	if !floor_collider.is_colliding():
+		direction = -direction
+	
 	if direction == -1:
 		animation.flip_h = true
 		obstacle_controller.target_position.x = -10
 		floor_collider.position.x = -10
-	elif direction == 1:
+	elif direction == 1 and !is_stunned:
 		animation.flip_h = false
 		obstacle_controller.target_position.x = 10
 		floor_collider.position.x = 10
 		
-	if direction:
-		velocity.x = direction * SPEED
-		if velocity.y == 0:
-			animation_player.play("Walk")
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		animation_player.play("Idle")
-	
 	if obstacle_controller.is_colliding() and obstacle_controller.get_collider() is TileMapLayer:
 		velocity = Vector2(50, -170)
 	
-	if !floor_collider.is_colliding():
-		direction = -direction
-	
+	if is_stunned:
+		on_stun()
+	else: 
+		if direction:
+			velocity.x = direction * SPEED
+			if velocity.y == 0:
+				animation_player.play("Walk")
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			animation_player.play("Idle")
+			
+			
+			
 	move_and_slide()
 
 func predead_actions():
@@ -73,7 +80,6 @@ func _on_timer_timeout() -> void:
 func _on_killbox_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		is_dead = true
-
 		body._hit_enemy()
 
 func _on_reverb_zone_entered():

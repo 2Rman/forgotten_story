@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 signal orb_collected()
 
 const SPEED = 80.0
-const JUMP_VELOCITY = -250.0
+const JUMP_VELOCITY = -260.0
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
@@ -13,7 +13,10 @@ const JUMP_VELOCITY = -250.0
 @onready var death: AudioStreamPlayer = $Sounds/Death
 @onready var world_1: Node2D = $".."
 
+var fireball_scene_resource = preload("res://scenes/items/fireball/fireball.tscn")
 var is_paused: bool = false
+var direction
+var last_direction
 
 func _ready() -> void:
 	AudioServer.set_bus_bypass_effects(1, true)
@@ -27,6 +30,10 @@ func _physics_process(delta: float) -> void:
 		world_1.dead_menu()
 		#queue_free()
 	
+	if Input.is_action_just_pressed("use_orb"):
+		await orb_using()
+
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		animation_player.play("fall")
@@ -35,12 +42,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		animation_player.play("jump")
 
-	var direction := Input.get_axis("left", "right")
+	direction = Input.get_axis("left", "right")
 	
 	if direction == -1:
 		animation.flip_h = true
 	elif direction == 1:
 		animation.flip_h = false
+		
 			
 	if direction:
 		velocity.x = direction * SPEED
@@ -52,6 +60,30 @@ func _physics_process(delta: float) -> void:
 			animation_player.play("idle")
 
 	move_and_slide()
+	
+	
+func orb_using():
+	match Globals.selected_orb:
+		Globals.ORBS.FIRE:
+			var fireball = fireball_scene_resource.instantiate()
+			world_1.add_child(fireball)
+			fireball.global_position = global_position
+			fireball.direction = Vector2(1, 0) if animation.flip_h == false else Vector2(-1, 0)
+		Globals.ORBS.NATURE:
+			if Globals.nature_orbs > 0:
+				velocity.x = 0
+				set_physics_process(false)
+				animation_player.play("cast_nature")
+				await animation_player.animation_finished
+				set_physics_process(true)
+		Globals.ORBS.DEATH:
+			if Globals.death_orbs > 0:
+				velocity.x = 0
+				set_physics_process(false)
+				animation_player.play("cast_death")
+				await animation_player.animation_finished
+				set_physics_process(true)
+
 	
 func _set_light_position() -> void:
 	if self.has_node("PointLight2D"):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cryvkg1qpg1hc"]
 
 [ext_resource type="PackedScene" uid="uid://cwreu6cxuvjfn" path="res://scenes/characters/player/player.tscn" id="1_j8ivh"]
-[ext_resource type="PackedScene" uid="uid://d26bbfwsqw03y" path="res://scenes/characters/enemy_ontogonist_red/enemy_ontogonist_red.tscn" id="2_nd71p"]
+[ext_resource type="PackedScene" uid="uid://7qg06aoyux0b" path="res://scenes/characters/enemy_ontogonist/enemy_ontogonist.tscn" id="2_j8ivh"]
 
 [node name="test_scene" type="Node2D"]
 
@@ -12,7 +12,7 @@ position = Vector2(747, -21)
 polygon = PackedVector2Array(-685, -448, -687, 37, 902, 37, 902, -503, 946, -505, 943, 74, -724, 72, -722, -454)
 
 [node name="Player" parent="." instance=ExtResource("1_j8ivh")]
-position = Vector2(226, -52)
+position = Vector2(361, -16)
 
-[node name="Enemy_ontogonist_red" parent="." instance=ExtResource("2_nd71p")]
-position = Vector2(463, -41)
+[node name="Enemy_ontogonist" parent="." instance=ExtResource("2_j8ivh")]
+position = Vector2(437, -24)
