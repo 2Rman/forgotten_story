@@ -12,29 +12,98 @@ const JUMP_VELOCITY = -260.0
 @onready var audio_main_theme: AudioStreamPlayer = $"../AudioStreamPlayer"
 @onready var death: AudioStreamPlayer = $Sounds/Death
 @onready var world_1: Node2D = $".."
+@onready var wall_collider: RayCast2D = $WallCollider
+@onready var floor_collider: RayCast2D = $FloorCollider
+@onready var holy_light: PointLight2D = $Wings/HolyLight
+@onready var wings: AnimatedSprite2D = $Wings
 
 var fireball_scene_resource = preload("res://scenes/items/fireball/fireball.tscn")
 var is_paused: bool = false
 var direction
 var last_direction
+var is_killed_by_enemy := false
+var is_killed_by_falling := false
+var is_dying := false
+var is_resurecting := false
+
+var is_playing_death_anim := false
 
 func _ready() -> void:
 	AudioServer.set_bus_bypass_effects(1, true)
+	holy_light.hide()
 
 func _physics_process(delta: float) -> void:
-	if Globals.is_dead:
+	if Globals.is_dead and Globals.holy_orbs == 0:
 		audio_main_theme.stop()
 		animation_player.play("death")
 		death_camera()
 		await animation_player.animation_finished
 		world_1.dead_menu()
-		#queue_free()
+	elif Globals.is_dead and Globals.holy_orbs > 0:
+		audio_main_theme.set_stream_paused(true)
+		if is_killed_by_enemy:
+			
+			if is_dying: return
+				
+			is_dying = true
+			
+			holy_light.show()
+			animation_player.play("raise")
+			
+			await get_tree().create_timer(2).timeout
+			wings.play("wings")
+			
+			await animation_player.animation_finished
+			Globals.is_dead = false
+			Globals.holy_orbs -= 1
+			Signals.holy_orb_used.emit()
+			
+			is_dying = false
+			is_killed_by_enemy = false
+			holy_light.hide()
+			
+		if is_killed_by_falling:
+			print("by falling")
+			if is_dying:
+				animation.hide()
+				animation_player.play("death")
+				await animation_player.animation_finished
+				
+				is_dying = false
+				return
+			
+			if wall_collider.is_colliding() and !floor_collider.is_colliding():
+				velocity = Vector2(0, -100) * SPEED * delta
+			elif !wall_collider.is_colliding() and !floor_collider.is_colliding():
+				velocity = Vector2(-100, 0) * SPEED * delta
+			elif floor_collider.is_colliding():
+				is_resurecting = false
+				animation.show()
+				print("stop here")
+				holy_light.show()
+				
+				animation_player.play("resurection")
+				wings.play("wings")
+			
+				await animation_player.animation_finished
+				holy_light.hide()
+				if is_resurecting: return
+				
+				is_resurecting = true
+
+				Globals.is_dead = false
+				is_killed_by_falling = false
+				
+				Globals.holy_orbs -= 1
+				Signals.holy_orb_used.emit()
+				
+		audio_main_theme.set_stream_paused(false)
+	
 	
 	if Input.is_action_just_pressed("use_orb"):
 		await orb_using()
-
 	
-	if not is_on_floor():
+	if not is_on_floor() and Globals.is_dead == false:
 		velocity += get_gravity() * delta
 		animation_player.play("fall")
 	
@@ -90,18 +159,13 @@ func orb_using():
 				await animation_player.animation_finished
 				set_physics_process(true)
 
-	
-func _set_light_position() -> void:
-	if self.has_node("PointLight2D"):
-		var light = self.get_node("PointLight2D")
-		light.name = "point_light_2d"
-		light.position = Vector2(0, 0)
 		
 func _hit_enemy() -> void:
 	velocity.y = -200
 
 func _on_killbox_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
+		is_killed_by_enemy = true
 		Globals.is_dead = true
 		
 func death_camera():
@@ -135,3 +199,14 @@ func on_orb_collected(object: Orb):
 		Globals.holy_orbs += 1
 	orb_collected.emit()
 	pass
+
+func handle_death():
+	audio_main_theme.stop()
+	animation_player.play("death")
+	death_camera()
+	await animation_player.animation_finished
+	world_1.dead_menu()
+#
+#func killed_by_falling():
+	#print("killed by falling")
+	#pass

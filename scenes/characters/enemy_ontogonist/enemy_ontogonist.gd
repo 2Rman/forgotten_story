@@ -3,12 +3,12 @@ extends Enemy
 @onready var timer: Timer = $Timer
 @onready var killbox_area: Area2D = $KillboxArea
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
-#@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var audio_stream_player: AudioStreamPlayer = $Audio/AudioStreamPlayer
 @onready var obstacle_controller: RayCast2D = $ObstacleController
 @onready var floor_collider: RayCast2D = $FloorCollider
+@onready var wall_collider: RayCast2D = $WallCollider
 
 const SPEED = 50.0
 
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		obstacle_controller.target_position.x = 10
 		floor_collider.position.x = 10
 		
-	if obstacle_controller.is_colliding() and obstacle_controller.get_collider() is TileMapLayer:
+	if obstacle_controller.is_colliding() and obstacle_controller.get_collider() is TileMapLayer and !wall_collider.is_colliding():
 		velocity = Vector2(50, -170)
 	
 	if is_stunned:

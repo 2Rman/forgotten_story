@@ -26,6 +26,8 @@ func _ready() -> void:
 	death_anim.play("NotSelected")
 	holy_anim.play("NotSelected")
 	
+	Signals.holy_orb_used.connect(_on_player_orb_collected)
+	
 	
 
 func _process(delta: float) -> void:
@@ -57,12 +59,10 @@ func _on_player_orb_collected() -> void:
 	label_holy.text = str(Globals.holy_orbs)
 
 func fire_orb_using():
-	print("fire")
 	Globals.fire_orbs -= 1
 	_on_player_orb_collected()
 
 func nature_orb_using():
-	print("nature")
 	Globals.nature_orbs -= 1
 	_on_player_orb_collected()
 	if (orb_area.has_overlapping_bodies()):

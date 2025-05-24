@@ -25,3 +25,5 @@ func _on_reverb_area_body_exited(body: Node2D) -> void:
 func _on_area_dead_body_entered(body: Node2D) -> void:
 	if body is Player:
 		Globals.is_dead = true
+		body.is_killed_by_falling = true
+		body.is_dying = true

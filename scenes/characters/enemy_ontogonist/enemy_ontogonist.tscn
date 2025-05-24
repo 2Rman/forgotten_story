@@ -464,5 +464,10 @@ position = Vector2(10, 0)
 target_position = Vector2(0, 75)
 collision_mask = 4
 
+[node name="WallCollider" type="RayCast2D" parent="."]
+position = Vector2(10, -14)
+target_position = Vector2(0, -10)
+collision_mask = 4
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="KillboxArea" to="." method="_on_killbox_area_body_entered"]

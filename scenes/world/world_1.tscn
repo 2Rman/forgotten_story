@@ -50,7 +50,7 @@ parameters/looping = true
 [node name="backgound" parent="." instance=ExtResource("1_q7ygm")]
 
 [node name="Player" parent="." instance=ExtResource("2_51his")]
-position = Vector2(1673, 475)
+position = Vector2(1134, 426)
 
 [node name="Enemy_ontogonist" parent="." instance=ExtResource("3_nsrf1")]
 position = Vector2(1587, 467)

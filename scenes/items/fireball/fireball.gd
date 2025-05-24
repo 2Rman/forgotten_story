@@ -38,7 +38,6 @@ func _physics_process(delta: float) -> void:
 	if raycast.is_colliding():
 		is_collided = true
 		collapse.play()
-		print("e")
 	
 	if is_collided:
 		if raycast.is_colliding():
@@ -59,16 +58,7 @@ func _physics_process(delta: float) -> void:
 				
 	else:
 		position += direction * speed * delta
-		distance += speed * delta
-			#target_hit.emit(object)
-			#if object is Enemy:
-				#object.is_dead = true
-				#print(object)
-			#elif object is not TileMapLayer:
-				#animation.play("finish")
-				#queue_free()
-			
+		distance += speed * delta 
 		if distance > MAX_DISTANCE:
-			#target_hit.emit(null)
 			queue_free()
 			return
