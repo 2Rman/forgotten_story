@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://tea8xg6frmte"]
+
+[ext_resource type="Texture2D" uid="uid://cchb6t148t5yr" path="res://assets/characters/soul/soul-main.png" id="1_p8iah"]
+[ext_resource type="Texture2D" uid="uid://chpgywu6y83lv" path="res://assets/items/Orbs/circle.png" id="2_l4mfw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4mfw"]
+height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5svs"]
+atlas = ExtResource("1_p8iah")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fntom"]
+atlas = ExtResource("1_p8iah")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwq72"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5svs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fntom")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_l4mfw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_bwq72")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("2_l4mfw")

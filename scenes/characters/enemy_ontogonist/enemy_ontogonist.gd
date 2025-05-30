@@ -22,7 +22,10 @@ func _ready() -> void:
 	audio_stream_player.stream = death_sound
 	
 func _physics_process(delta: float) -> void:
-
+	
+	if Globals.is_dead:
+		velocity = Vector2.ZERO
+		return
 	
 	if is_dead == true:
 		predead_actions()
@@ -33,19 +36,21 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if !floor_collider.is_colliding():
+	if !floor_collider.is_colliding() or wall_collider.is_colliding():
 		direction = -direction
 	
 	if direction == -1:
 		animation.flip_h = true
 		obstacle_controller.target_position.x = -10
 		floor_collider.position.x = -10
+		wall_collider.position.x = -10
 	elif direction == 1 and !is_stunned:
 		animation.flip_h = false
 		obstacle_controller.target_position.x = 10
 		floor_collider.position.x = 10
+		wall_collider.position.x = 10
 		
-	if obstacle_controller.is_colliding() and obstacle_controller.get_collider() is TileMapLayer and !wall_collider.is_colliding():
+	if obstacle_controller.is_colliding() and obstacle_controller.get_collider() is TileMapLayer:
 		velocity = Vector2(50, -170)
 	
 	if is_stunned:

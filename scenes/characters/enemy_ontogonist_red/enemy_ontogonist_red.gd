@@ -24,6 +24,10 @@ func _ready() -> void:
 	audio_stream_player.stream = death_sound
 	
 func _physics_process(delta: float) -> void:
+	
+	if Globals.is_dead:
+		velocity = Vector2.ZERO
+		return
 		
 	if is_dead == true:
 		predead_actions()

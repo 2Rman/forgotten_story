@@ -465,7 +465,7 @@ target_position = Vector2(0, 75)
 collision_mask = 4
 
 [node name="WallCollider" type="RayCast2D" parent="."]
-position = Vector2(10, -14)
+position = Vector2(10, -16)
 target_position = Vector2(0, -10)
 collision_mask = 4
 

@@ -28,8 +28,6 @@ func _ready() -> void:
 	
 	Signals.holy_orb_used.connect(_on_player_orb_collected)
 	
-	
-
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("change_orb"):
 		change_orb()

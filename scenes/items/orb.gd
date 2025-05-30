@@ -7,12 +7,6 @@ class_name Orb
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		body.on_orb_collected(self)

@@ -14,7 +14,6 @@ var is_collided := false
 @onready var collapse: AudioStreamPlayer2D = $collapse
 
 @export var velo = velocity
-signal target_hit(object)
 
 func _ready() -> void:
 	animation.play("start")

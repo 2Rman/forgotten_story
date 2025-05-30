@@ -12,7 +12,7 @@ var is_stunned :=  false
 	#pass
 
 func stun():
-	print("stun!")
+	
 	is_stunned = true
 	await get_tree().create_timer(3).timeout
 	is_stunned = false
@@ -21,5 +21,4 @@ func stun():
 func on_stun():
 	velocity.x = 0
 	animation_player.play("stunned")
-	await get_tree().create_timer(3)
 	

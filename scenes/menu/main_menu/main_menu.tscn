@@ -188,7 +188,7 @@ text = "Exit
 
 [node name="Version" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Pre-alpha ver 0.0.2"
+text = "Pre-alpha ver 0.0.9"
 horizontal_alignment = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainerStart/ButtonStart" to="." method="_on_button_start_pressed"]

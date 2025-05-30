@@ -13,9 +13,11 @@ const JUMP_VELOCITY = -260.0
 @onready var death: AudioStreamPlayer = $Sounds/Death
 @onready var world_1: Node2D = $".."
 @onready var wall_collider: RayCast2D = $WallCollider
+@onready var ceiling_collider: RayCast2D = $CeilingCollider
 @onready var floor_collider: RayCast2D = $FloorCollider
 @onready var holy_light: PointLight2D = $Wings/HolyLight
 @onready var wings: AnimatedSprite2D = $Wings
+
 
 var fireball_scene_resource = preload("res://scenes/items/fireball/fireball.tscn")
 var is_paused: bool = false
@@ -40,8 +42,9 @@ func _physics_process(delta: float) -> void:
 		await animation_player.animation_finished
 		world_1.dead_menu()
 	elif Globals.is_dead and Globals.holy_orbs > 0:
-		audio_main_theme.set_stream_paused(true)
 		if is_killed_by_enemy:
+			
+			audio_main_theme.set_stream_paused(true)
 			
 			if is_dying: return
 				
@@ -62,8 +65,12 @@ func _physics_process(delta: float) -> void:
 			is_killed_by_enemy = false
 			holy_light.hide()
 			
+			audio_main_theme.set_stream_paused(false)
+			
 		if is_killed_by_falling:
-			print("by falling")
+			
+			audio_main_theme.set_stream_paused(true)
+			
 			if is_dying:
 				animation.hide()
 				animation_player.play("death")
@@ -79,7 +86,7 @@ func _physics_process(delta: float) -> void:
 			elif floor_collider.is_colliding():
 				is_resurecting = false
 				animation.show()
-				print("stop here")
+				
 				holy_light.show()
 				
 				animation_player.play("resurection")
@@ -97,7 +104,7 @@ func _physics_process(delta: float) -> void:
 				Globals.holy_orbs -= 1
 				Signals.holy_orb_used.emit()
 				
-		audio_main_theme.set_stream_paused(false)
+			audio_main_theme.set_stream_paused(false)
 	
 	
 	if Input.is_action_just_pressed("use_orb"):
@@ -161,7 +168,7 @@ func orb_using():
 
 		
 func _hit_enemy() -> void:
-	velocity.y = -200
+	velocity.y = -230
 
 func _on_killbox_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
@@ -206,7 +213,3 @@ func handle_death():
 	death_camera()
 	await animation_player.animation_finished
 	world_1.dead_menu()
-#
-#func killed_by_falling():
-	#print("killed by falling")
-	#pass

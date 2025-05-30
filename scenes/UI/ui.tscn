@@ -762,7 +762,7 @@ alignment = 2
 [node name="Label_alarm" type="Label" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 35
 text = "Not enough current orbs"
 horizontal_alignment = 1
 

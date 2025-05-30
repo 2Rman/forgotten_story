@@ -1,8 +1,9 @@
-[gd_scene load_steps=56 format=3 uid="uid://cb6amc6qsnuq2"]
+[gd_scene load_steps=58 format=3 uid="uid://cb6amc6qsnuq2"]
 
 [ext_resource type="Script" uid="uid://brb8d6h8pun3o" path="res://scenes/items/holy_orb/holy_orb.gd" id="1_8obwd"]
 [ext_resource type="Texture2D" uid="uid://bscdj5oumjk60" path="res://assets/items/Orbs/34.png" id="2_8obwd"]
 [ext_resource type="Texture2D" uid="uid://cen7qsjd7b75b" path="res://assets/items/Orbs/Holy Orb.png" id="3_mo7tw"]
+[ext_resource type="Texture2D" uid="uid://dxx6twbp11rgw" path="res://assets/characters/player/wings.png" id="3_uyq71"]
 [ext_resource type="Texture2D" uid="uid://chpgywu6y83lv" path="res://assets/items/Orbs/circle.png" id="4_wd7jj"]
 [ext_resource type="AudioStream" uid="uid://cnr4wpbfeqbhv" path="res://assets/sounds/orbs/holy_orb.mp3" id="5_8obwd"]
 [ext_resource type="AudioStream" uid="uid://bm680h4kdcix1" path="res://assets/sounds/orbs/holy_orb_idle.mp3" id="6_mo7tw"]
@@ -46,6 +47,10 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oyejq"]
 atlas = ExtResource("2_8obwd")
 region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nod6u"]
+atlas = ExtResource("3_uyq71")
+region = Rect2(1920, 2688, 384, 384)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_af3ds"]
 atlas = ExtResource("3_mo7tw")
@@ -227,6 +232,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oyejq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nod6u")
 }],
 "loop": false,
 "name": &"Collect",

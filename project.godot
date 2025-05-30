@@ -75,8 +75,3 @@ use_orb={
 [physics]
 
 2d/default_gravity=880.0
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

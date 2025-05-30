@@ -50,7 +50,7 @@ parameters/looping = true
 [node name="backgound" parent="." instance=ExtResource("1_q7ygm")]
 
 [node name="Player" parent="." instance=ExtResource("2_51his")]
-position = Vector2(1134, 426)
+position = Vector2(5223, 501)
 
 [node name="Enemy_ontogonist" parent="." instance=ExtResource("3_nsrf1")]
 position = Vector2(1587, 467)
@@ -72,5 +72,50 @@ position = Vector2(718, 507)
 
 [node name="Enemy_ontogonist5" parent="." instance=ExtResource("3_nsrf1")]
 position = Vector2(2753, 545)
+
+[node name="Enemy_ontogonist6" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(5321, 405)
+
+[node name="Enemy_ontogonist_red3" parent="." instance=ExtResource("5_51his")]
+position = Vector2(5705, 286)
+
+[node name="Enemy_ontogonist7" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(5518, 343)
+
+[node name="Enemy_ontogonist8" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(5721, 515)
+
+[node name="Enemy_ontogonist9" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(5903, 414)
+
+[node name="Enemy_ontogonist_red4" parent="." instance=ExtResource("5_51his")]
+position = Vector2(6049, 507)
+
+[node name="Enemy_ontogonist_red5" parent="." instance=ExtResource("5_51his")]
+position = Vector2(6037, 383)
+
+[node name="Enemy_ontogonist_red6" parent="." instance=ExtResource("5_51his")]
+position = Vector2(5334, 542)
+
+[node name="Enemy_ontogonist_red7" parent="." instance=ExtResource("5_51his")]
+position = Vector2(3528, 507)
+
+[node name="Enemy_ontogonist10" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(4000, 424)
+
+[node name="Enemy_ontogonist11" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(5403, 503)
+
+[node name="Enemy_ontogonist_red8" parent="." instance=ExtResource("5_51his")]
+position = Vector2(5764, 509)
+
+[node name="Enemy_ontogonist12" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(5979, 382)
+
+[node name="Enemy_ontogonist13" parent="." instance=ExtResource("3_nsrf1")]
+position = Vector2(5890, 347)
+
+[node name="Enemy_ontogonist_red9" parent="." instance=ExtResource("5_51his")]
+position = Vector2(5558, 348)
 
 [connection signal="orb_collected" from="Player" to="CanvasLayer/UI" method="_on_player_orb_collected"]
