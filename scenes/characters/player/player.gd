@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-signal orb_collected()
+signal orb_collected
 
 const SPEED = 80.0
 const JUMP_VELOCITY = -260.0
@@ -13,7 +13,6 @@ const JUMP_VELOCITY = -260.0
 @onready var death: AudioStreamPlayer = $Sounds/Death
 @onready var world_1: Node2D = $".."
 @onready var wall_collider: RayCast2D = $WallCollider
-@onready var ceiling_collider: RayCast2D = $CeilingCollider
 @onready var floor_collider: RayCast2D = $FloorCollider
 @onready var holy_light: PointLight2D = $Wings/HolyLight
 @onready var wings: AnimatedSprite2D = $Wings
@@ -198,12 +197,24 @@ func _on_reverb_zone_exited():
 func on_orb_collected(object: Orb):
 	if object is FireOrb: 
 		Globals.fire_orbs += 1
+		if !Globals.fire_firts:
+			Globals.fire_firts = true
+			Signals.fire_colleced_first_time.emit()
 	elif object is NatureOrb:
 		Globals.nature_orbs += 1
+		if !Globals.nature_firts:
+			Globals.nature_firts = true
+			Signals.nature_colleced_first_time.emit()
 	elif object is DeathOrb:
 		Globals.death_orbs += 1
+		if !Globals.death_firts:
+			Globals.death_firts = true
+			Signals.death_colleced_first_time.emit()
 	elif object is HolyOrb:
 		Globals.holy_orbs += 1
+		if !Globals.holy_firts:
+			Globals.holy_firts = true
+			Signals.holy_colleced_first_time.emit()
 	orb_collected.emit()
 	pass
 

@@ -1,3 +1,8 @@
 extends Node
 
-signal holy_orb_used()
+signal holy_orb_used
+
+signal fire_colleced_first_time
+signal nature_colleced_first_time
+signal death_colleced_first_time
+signal holy_colleced_first_time

@@ -4,7 +4,7 @@ class_name HolyOrb
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		body.on_orb_collected(self)
-		
+		print(self, " collected")
 		collision_shape_2d.queue_free()
 		
 		audio_stream_player_2d.stop()

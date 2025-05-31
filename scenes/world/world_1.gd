@@ -7,8 +7,13 @@ extends Node2D
 var is_paused := false
 
 func _ready() -> void:
+	Signals.fire_colleced_first_time.connect(_on_fire_collected_first)
+	Signals.nature_colleced_first_time.connect(_on_nature_collected_first)
+	Signals.holy_colleced_first_time.connect(_on_holy_collected_first)
+	Signals.death_colleced_first_time.connect(_on_death_collected_first)
 	pause_menu()
 	dead_menu()
+
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
@@ -29,3 +34,15 @@ func dead_menu():
 	else:
 		death_menu_node.hide()
 		Engine.time_scale = 1
+
+func _on_fire_collected_first():
+	print("fire lor")
+	
+func _on_nature_collected_first():
+	print("nature lor")
+	
+func _on_holy_collected_first():
+	print("holy lor")
+	
+func _on_death_collected_first():
+	print("death lor")
